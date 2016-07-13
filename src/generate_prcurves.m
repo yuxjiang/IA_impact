@@ -1,57 +1,52 @@
+%script
 %GENERATE_PRCURVES Generate Precision-Recall curves
 %
-% This script assumes the following structure presented 
-% in the working space
+% [] = GENERATE_PRCURVES;
 %
-%   [[:target proteins:]]
-%      ---------------
-%   tarlist_all
-%       [bpo], [cco], [mfo]
+% Require
+% -------
+% (target proteins)
+% tarlist_all
+%   .bpo, .cco, .mfo
 %
-%   tarlist_ia
-%       t12 (bpo, cco, mfo)
-%       t13 (bpo, cco, mfo)
-%       t14 (bpo, cco, mfo)
+% tarlist_ia
+%   .t12 (.bpo, .cco, .mfo)
+%   .t13 (.bpo, .cco, .mfo)
+%   .t14 (.bpo, .cco, .mfo)
 %
-%   [[:predictors:]]
-%      ----------
-%   gotcha - GOtcha predictor
-%       [bpo], [cco], [mfo]
+% (predictors)
+% gotcha - GOtcha predictor
+%   .bpo, .cco, .mfo
 %
-%   blast - BLAST predictor
-%       [bpo], [cco], [mfo]
+% blast - BLAST predictor
+%   .bpo, .cco, .mfo
 %
-%   com - Swiss-Prot computational annotation
-%       [bpo], [cco], [mfo]
+% com - Swiss-Prot computational annotation
+%   .bpo, .cco, .mfo
 %
-%   [[:ontology annotation:]]
-%      -------------------
-%   sp1101
-%       [bpoa], [ccoa], [mfoa]
+% (ontology annotation)
+% sp1101
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1201
-%       [bpoa], [ccoa], [mfoa]
+% sp1201
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1301
-%       [bpoa], [ccoa], [mfoa]
+% sp1301
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1401
-%       [bpoa], [ccoa], [mfoa]
+% sp1401
+%   .bpoa, .ccoa, .mfoa
 %
-% This script produces:
-%   gotcha_prcurve
-%   gotcha_prcurve_ia
-%   blast_prcurve
-%   blast_prcurve_ia
-%   com_prcurve
-%   com_prcurve
-%
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Fri 04 Apr 2014 09:33:02 AM EDT
+% Provide
+% -------
+% gotcha_prcurve
+% gotcha_prcurve_ia
+% blast_prcurve
+% blast_prcurve_ia
+% com_prcurve
+% com_prcurve
 
+% setting up {{{
 tar_ia.t12.bpo = tarlist_ia.t12.bpo.object;
 tar_ia.t12.cco = tarlist_ia.t12.cco.object;
 tar_ia.t12.mfo = tarlist_ia.t12.mfo.object;
@@ -67,8 +62,9 @@ tar_ia.t14.mfo = tarlist_ia.t14.mfo.object;
 % resolution
 resol = 100;
 mode = 2;
+% }}}
 
-% GOtcha Precision-Recall curves
+% GOtcha Precision-Recall curves {{{
 gotcha_prcurve.bpo.c2011 = pfp_avgprcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1101.bpoa, resol);
 gotcha_prcurve.bpo.c2012 = pfp_avgprcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1201.bpoa, resol);
 gotcha_prcurve.bpo.c2013 = pfp_avgprcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1301.bpoa, resol);
@@ -108,8 +104,9 @@ gotcha_prcurve_ia.cco.c2014 = pfp_avgprcurve(tar_ia.t14.cco, mode, gotcha.cco, s
 gotcha_prcurve_ia.mfo.c2012 = pfp_avgprcurve(tar_ia.t12.mfo, mode, gotcha.mfo, sp1201.mfoa, resol);
 gotcha_prcurve_ia.mfo.c2013 = pfp_avgprcurve(tar_ia.t13.mfo, mode, gotcha.mfo, sp1301.mfoa, resol);
 gotcha_prcurve_ia.mfo.c2014 = pfp_avgprcurve(tar_ia.t14.mfo, mode, gotcha.mfo, sp1401.mfoa, resol);
+% }}}
 
-% BLAST Precision-Recall curves
+% BLAST Precision-Recall curves {{{
 blast_prcurve.bpo.c2011 = pfp_avgprcurve(tarlist_all.bpo, mode, blast.bpo, sp1101.bpoa, resol);
 blast_prcurve.bpo.c2012 = pfp_avgprcurve(tarlist_all.bpo, mode, blast.bpo, sp1201.bpoa, resol);
 blast_prcurve.bpo.c2013 = pfp_avgprcurve(tarlist_all.bpo, mode, blast.bpo, sp1301.bpoa, resol);
@@ -149,8 +146,9 @@ blast_prcurve_ia.cco.c2014 = pfp_avgprcurve(tar_ia.t14.cco, mode, blast.cco, sp1
 blast_prcurve_ia.mfo.c2012 = pfp_avgprcurve(tar_ia.t12.mfo, mode, blast.mfo, sp1201.mfoa, resol);
 blast_prcurve_ia.mfo.c2013 = pfp_avgprcurve(tar_ia.t13.mfo, mode, blast.mfo, sp1301.mfoa, resol);
 blast_prcurve_ia.mfo.c2014 = pfp_avgprcurve(tar_ia.t14.mfo, mode, blast.mfo, sp1401.mfoa, resol);
+% }}}
 
-% Swiss-Prot computational annotation Precision-Recall curves
+% Swiss-Prot computational annotation Precision-Recall curves {{{
 com_prcurve.bpo.c2011 = pfp_avgprcurve(tarlist_all.bpo, mode, com.bpo, sp1101.bpoa, resol);
 com_prcurve.bpo.c2012 = pfp_avgprcurve(tarlist_all.bpo, mode, com.bpo, sp1201.bpoa, resol);
 com_prcurve.bpo.c2013 = pfp_avgprcurve(tarlist_all.bpo, mode, com.bpo, sp1301.bpoa, resol);
@@ -190,7 +188,14 @@ com_prcurve_ia.cco.c2014 = pfp_avgprcurve(tar_ia.t14.cco, mode, com.cco, sp1401.
 com_prcurve_ia.mfo.c2012 = pfp_avgprcurve(tar_ia.t12.mfo, mode, com.mfo, sp1201.mfoa, resol);
 com_prcurve_ia.mfo.c2013 = pfp_avgprcurve(tar_ia.t13.mfo, mode, com.mfo, sp1301.mfoa, resol);
 com_prcurve_ia.mfo.c2014 = pfp_avgprcurve(tar_ia.t14.mfo, mode, com.mfo, sp1401.mfoa, resol);
+% }}}
 
-% clearing
+% clearing {{{
 clear tar_ia resol
-% end
+% }}}
+
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Tue 12 Jul 2016 04:13:21 PM E

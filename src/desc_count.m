@@ -1,22 +1,23 @@
+%script
+%
 % Calculate the number of proteins whose annotation has been descreased.
 %
-% Assumes the following variables in the working space
-%
-% sp1001, sp1101, sp1201, sp1301, sp1401
+% Note
+% ----
+% This script assumes the following variables in the working space
+% sp1001
+% sp1101
+% sp1201
+% sp1301
+% sp1401
 %
 % Output
 % ------
-%   N_desc
+% N_desc
 %
-% Dependence
+% Dependency
 % ----------
-%   ia_list.m
-%
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Sun 08 Jun 2014 09:42:37 AM EDT
+%[>]ia_list.m
 
 ts.mfo = setdiff(sp1101.mfoa.object, sp1001.mfoa.object);
 ts.bpo = setdiff(sp1101.bpoa.object, sp1001.bpoa.object);
@@ -46,3 +47,8 @@ N_desc.t14.mfo = intersect(ts.mfo, desc.t14.mfo.object);
 N_desc.t14.bpo = intersect(ts.bpo, desc.t14.bpo.object);
 N_desc.t14.cco = intersect(ts.cco, desc.t14.cco.object);
 
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Mon 11 Jul 2016 02:48:43 PM E

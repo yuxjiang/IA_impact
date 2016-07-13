@@ -1,6 +1,8 @@
+%script
 %OUTPUT_S2MIN_TABLE Output F2-min table
 %
-%   This script assumes the following variable presented in the working space
+% Require
+% -------
 %
 % Predictors
 % ----------

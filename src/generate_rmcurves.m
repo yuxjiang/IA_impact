@@ -1,62 +1,52 @@
+%script
 %GENERATE_RMCURVES Generate RU-MI curves
 %
-% This script assumes the following structure presented 
-% in the working space
+% [] = GENERATE_RMCURVES;
 %
-%   [[:target proteins:]]
-%      ---------------
-%   tarlist_all
-%       [bpo], [cco], [mfo]
+% Require
+% -------
+% (target proteins)
+% tarlist_all
+%   .bpo, .cco, .mfo
 %
-%   tarlist_ia
-%       t12 (bpo, cco, mfo)
-%       t13 (bpo, cco, mfo)
-%       t14 (bpo, cco, mfo)
+% tarlist_ia
+%   .t12 (.bpo, .cco, .mfo)
+%   .t13 (.bpo, .cco, .mfo)
+%   .t14 (.bpo, .cco, .mfo)
 %
-%   [[:predictors:]]
-%      ----------
-%   gotcha - GOtcha predictor
-%       [bpo], [cco], [mfo]
+% (predictors)
+% gotcha - GOtcha predictor
+%   .bpo, .cco, .mfo
 %
-%   blast - BLAST predictor
-%       [bpo], [cco], [mfo]
+% blast - BLAST predictor
+%   .bpo, .cco, .mfo
 %
-%   com - Swiss-Prot computational annotation
-%       [bpo], [cco], [mfo]
+% com - Swiss-Prot computational annotation
+%   .bpo, .cco, .mfo
 %
-%   [[:ontology annotation:]]
-%      -------------------
-%   sp1101
-%       [bpoa], [ccoa], [mfoa]
+% (ontology annotation)
+% sp1101
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1201
-%       [bpoa], [ccoa], [mfoa]
+% sp1201
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1301
-%       [bpoa], [ccoa], [mfoa]
+% sp1301
+%   .bpoa, .ccoa, .mfoa
 %
-%   sp1401
-%       [bpoa], [ccoa], [mfoa]
+% sp1401
+%   .bpoa, .ccoa, .mfoa
 %
-%   [[:information accretion:]]
-%      ---------------------
-%   ia
-%       [bpo], [cco], [mfo]
-%
-% This script produces:
-%   gotcha_rmcurve
-%   gotcha_rmcurve_ia
-%   blast_rmcurve
-%   blast_rmcurve_ia
-%   com_rmcurve
-%   com_rmcurve
-%
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Fri 04 Apr 2014 09:34:13 AM EDT
+% Provide
+% -------
+% gotcha_rmcurve
+% gotcha_rmcurve_ia
+% blast_rmcurve
+% blast_rmcurve_ia
+% com_rmcurve
+% com_rmcurve
 
+% setting up {{{
 tar_ia.t12.bpo = tarlist_ia.t12.bpo.object;
 tar_ia.t12.cco = tarlist_ia.t12.cco.object;
 tar_ia.t12.mfo = tarlist_ia.t12.mfo.object;
@@ -71,8 +61,9 @@ tar_ia.t14.mfo = tarlist_ia.t14.mfo.object;
 
 resol = 100;
 mode = 2;
+% }}}
 
-% GOtcha RU-MI curves
+% GOtcha RU-MI curves {{{
 gotcha_rmcurve.bpo.c2011 = pfp_avgrmcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1101.bpoa, ia.bpo, resol);
 gotcha_rmcurve.bpo.c2012 = pfp_avgrmcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1201.bpoa, ia.bpo, resol);
 gotcha_rmcurve.bpo.c2013 = pfp_avgrmcurve(tarlist_all.bpo, mode, gotcha.bpo, sp1301.bpoa, ia.bpo, resol);
@@ -112,8 +103,9 @@ gotcha_rmcurve_ia.cco.c2014 = pfp_avgrmcurve(tar_ia.t14.cco, mode, gotcha.cco, s
 gotcha_rmcurve_ia.mfo.c2012 = pfp_avgrmcurve(tar_ia.t12.mfo, mode, gotcha.mfo, sp1201.mfoa, ia.mfo, resol);
 gotcha_rmcurve_ia.mfo.c2013 = pfp_avgrmcurve(tar_ia.t13.mfo, mode, gotcha.mfo, sp1301.mfoa, ia.mfo, resol);
 gotcha_rmcurve_ia.mfo.c2014 = pfp_avgrmcurve(tar_ia.t14.mfo, mode, gotcha.mfo, sp1401.mfoa, ia.mfo, resol);
+% }}}
 
-% BLAST RU-MI curves
+% BLAST RU-MI curves {{{
 blast_rmcurve.bpo.c2011 = pfp_avgrmcurve(tarlist_all.bpo, mode, blast.bpo, sp1101.bpoa, ia.bpo, resol);
 blast_rmcurve.bpo.c2012 = pfp_avgrmcurve(tarlist_all.bpo, mode, blast.bpo, sp1201.bpoa, ia.bpo, resol);
 blast_rmcurve.bpo.c2013 = pfp_avgrmcurve(tarlist_all.bpo, mode, blast.bpo, sp1301.bpoa, ia.bpo, resol);
@@ -153,8 +145,9 @@ blast_rmcurve_ia.cco.c2014 = pfp_avgrmcurve(tar_ia.t14.cco, mode, blast.cco, sp1
 blast_rmcurve_ia.mfo.c2012 = pfp_avgrmcurve(tar_ia.t12.mfo, mode, blast.mfo, sp1201.mfoa, ia.mfo, resol);
 blast_rmcurve_ia.mfo.c2013 = pfp_avgrmcurve(tar_ia.t13.mfo, mode, blast.mfo, sp1301.mfoa, ia.mfo, resol);
 blast_rmcurve_ia.mfo.c2014 = pfp_avgrmcurve(tar_ia.t14.mfo, mode, blast.mfo, sp1401.mfoa, ia.mfo, resol);
+% }}}
 
-% Swiss-Prot computational annotation RU-MI curves
+% Swiss-Prot computational annotation RU-MI curves {{{
 com_rmcurve.bpo.c2011 = pfp_avgrmcurve(tarlist_all.bpo, mode, com.bpo, sp1101.bpoa, ia.bpo, resol);
 com_rmcurve.bpo.c2012 = pfp_avgrmcurve(tarlist_all.bpo, mode, com.bpo, sp1201.bpoa, ia.bpo, resol);
 com_rmcurve.bpo.c2013 = pfp_avgrmcurve(tarlist_all.bpo, mode, com.bpo, sp1301.bpoa, ia.bpo, resol);
@@ -190,10 +183,18 @@ com_rmcurve_ia.bpo.c2014 = pfp_avgrmcurve(tar_ia.t14.bpo, mode, com.bpo, sp1401.
 com_rmcurve_ia.cco.c2012 = pfp_avgrmcurve(tar_ia.t12.cco, mode, com.cco, sp1201.ccoa, ia.cco, resol);
 com_rmcurve_ia.cco.c2013 = pfp_avgrmcurve(tar_ia.t13.cco, mode, com.cco, sp1301.ccoa, ia.cco, resol);
 com_rmcurve_ia.cco.c2014 = pfp_avgrmcurve(tar_ia.t14.cco, mode, com.cco, sp1401.ccoa, ia.cco, resol);
- 
+
 com_rmcurve_ia.mfo.c2012 = pfp_avgrmcurve(tar_ia.t12.mfo, mode, com.mfo, sp1201.mfoa, ia.mfo, resol);
 com_rmcurve_ia.mfo.c2013 = pfp_avgrmcurve(tar_ia.t13.mfo, mode, com.mfo, sp1301.mfoa, ia.mfo, resol);
 com_rmcurve_ia.mfo.c2014 = pfp_avgrmcurve(tar_ia.t14.mfo, mode, com.mfo, sp1401.mfoa, ia.mfo, resol);
+% }}}
 
+% clearing {{{
 clear tar_ia resol
-% end
+% }}}
+
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Tue 12 Jul 2016 04:16:46 PM E

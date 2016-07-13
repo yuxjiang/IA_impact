@@ -1,75 +1,101 @@
 function [GAMMA, DELTA, recall] = collect_gamma_delta_recall(pred, oa0, oa1)
 %COLLECT_GAMMA_DELTA_RECALL Collect GAMMA DELTA recall
 %
-%   [GAMMA, DELTA, RECALL] = COLLECT_GAMMA_DELTA_RECALL(pred, oa0, oa1);
+% [GAMMA, DELTA, recall] = COLLECT_GAMMA_DELTA_RECALL(pred, oa0, oa1);
 %
-%       Collects observations of (DELTA, recall) pairs.
+%   Collects observations of (DELTA, recall) pairs.
 %
-%       Note: 
-%       1. the `ontology' structure of `pred', `oa0' and `oa1'
-%       must be the same.
-%
-%       2. the `score' structure of `pred' should be logical.
-%       use a reasonable threshold to make it binary ahead of 
-%       time.
+% Note
+% ----
+% 1. The 'ontology' structure of 'pred', 'oa0' and 'oa1' must be the same.
+% 2. the 'score' structure of 'pred' should be logical.  use a reasonable
+%    threshold to make it binary ahead of time.
 %
 % Input
 % -----
-%   pred:   the prediction structure
+% [struct]
+% pred: The prediction structure.
 %
-%   oa0:    the ontology annotation structure at t0
-%           see pfp_oabuild.m
+% [struct]
+% oa0:  The ontology annotation structure at t0, see pfp_oabuild.m
 %
-%   oa1:    the ontology annotation structure at t1
+% [struct]
+% oa1:  The ontology annotation structure at t1.
 %
 % Output
 % ------
-%   GAMMA:  n-by-1 observations of GAMMA,
-%           which is the number of annotation at t0.
+% [double]
+% GAMMA:  An n-by-1 observations of GAMMA, i.e., the number of annotation at t0.
 %
-%   DELTA:  n-by-1 observations of DELTA,
-%           which is the number of incomplete annotation.
+% [double]
+% DELTA:  An n-by-1 observations of DELTA, i.e., the number of incomplete annotation.
 %
-%   recall: n-by-1 observations of recall on DELTA.
+% [double]
+% recall: An n-by-1 observations of recall on DELTA.
 %
-% Dependence
+% Dependency
 % ----------
-%   ia_list.m
-%   pfp_oaproj.m
-%
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Wed 26 Feb 2014 03:30:00 PM EST
+%[>]pfp_sameont.m
+%[>]ia_list.m
+%[>]pfp_oaproj.m
 
-    if ~islogical(pred.score)
-        error('collect_delta_recall:realscore', ...
-            'Make ''score'' of ''pred'' logical first.');
-    end
+  % check inputs {{{
+  if nargin ~= 3
+    error('collect_gamma_delta_recall:InputCount', 'Expected 3 inputs.');
+  end
 
-    % find proteins whose number of annotation has grown
-    % from t0 to t1.
-    ia = ia_list(oa0, oa1, true);
+  % pred
+  validateattributes(pred, {'struct'}, {'nonempty'}, '', 'pred', 1);
 
-    % remove those with no predictions
-    % because we cannot estimate recall on those proteins.
-    lst = ia.object(ismember(ia.object, pred.object));
+  % oa0
+  validateattributes(oa0, {'struct'}, {'nonempty'}, '', 'oa0', 2);
+  [issame, msg] = pfp_sameont(pred.ontology, oa0.ontology);
+  if ~issame
+    error('collect_gamma_delta_recall:DiffOnt', msg);
+  end
 
-    % project prediction structure to the remaining list
-    [found, index] = ismember(pred.object, lst);
-    pred.object = pred.object(index(found));
-    pred.score  = pred.score(index(found), :);
-    
-    % project oa structures to the list
-    oa0 = pfp_oaproj(oa0, lst, 'object');
-    oa1 = pfp_oaproj(oa1, lst, 'object');
+  % oa1
+  validateattributes(oa1, {'struct'}, {'nonempty'}, '', 'oa1', 3);
+  [issame, msg] = pfp_sameont(pred.ontology, oa1.ontology);
+  if ~issame
+    error('collect_gamma_delta_recall:DiffOnt', msg);
+  end
+  % }}}
 
-    GAMMA = full(sum(oa0.annotation, 2));
+  if ~islogical(pred.score)
+    error('collect_delta_recall:realscore', 'Make ''score'' of ''pred'' logical first.');
+  end
 
-    annot_mask = oa1.annotation & ~oa0.annotation; % grown portion
-    DELTA = full(sum(annot_mask, 2));
+  % find proteins whose number of annotation has grown {{{
+  ia = ia_list(oa0, oa1, true);
+  % }}}
 
-    beta = full(sum(pred.score & annot_mask, 2));
-    recall = beta ./ DELTA;
+  % remove those with no predictions {{{
+  % because we are not able to estimate recall on those proteins.
+  list = ia.object(ismember(ia.object, pred.object));
+  % }}}
+
+  % project prediction structure to the remaining list
+  [found, index] = ismember(pred.object, list);
+  pred.object = pred.object(index(found));
+  pred.score  = pred.score(index(found), :);
+
+  % project oa structures to the list {{{
+  oa0 = pfp_oaproj(oa0, list, 'object');
+  oa1 = pfp_oaproj(oa1, list, 'object');
+  % }}}
+
+  GAMMA = full(sum(oa0.annotation, 2));
+
+  annot_mask = oa1.annotation & ~oa0.annotation; % grown portion
+  DELTA = full(sum(annot_mask, 2));
+
+  beta = full(sum(pred.score & annot_mask, 2));
+  recall = beta ./ DELTA;
 return
+
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Wed 13 Jul 2016 01:47:38 PM E

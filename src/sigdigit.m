@@ -1,35 +1,50 @@
 function [y] = sigdigit(x, sig)
-% SIGDIGIT Significant digits
+%SIGDIGIT Significant digits
 %
-%   [y] = SIGDIGIT(x, sig);
+% [y] = SIGDIGIT(x, sig);
 %
-%       trim off the remainder after three significant digits.
+%   Trims off the remainder after three significant digits.
 %
 % Input
 % -----
-%   x:      double values
+% (required)
+% [double]
+% x:    A double values
 %
-%   sig:    number of significant digits, default: 3
+% (optional)
+% [double]
+% sig:  The number of significant digits.
+%       default: 3
 %
 % Output
 % ------
-%   y:      trimed double values
-%
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Thu 03 Apr 2014 11:22:50 AM EDT
+% [double]
+% y:  The trimed double values.
 
-    if ~exist('sig', 'var')
-        sig = 3;
-    end
+  % check inputs {{{
+  if nargin ~=2 && nargin ~=3
+    error('sigdigit:InputCount', 'Expected 2 or 3 inputs.');
+  end
 
-    % checking
-    if sig < 0
-        error('sigdigit:inputerr', '''sig'' must be greater than 0.');
-    end
+  if nargin == 2
+    sig = 3;
+  end
 
-    f = 10 .^ floor(log10(abs(x)) - (sig - 1));
-    y = round(x ./ f) .* f;
+  % x
+  validateattributes(x, {'double'}, {'nonempty'}, '', 'x', 2);
+
+  % sig
+  validateattributes(sig, {'double'}, {'>=', 0, 'integer'}, '', 'sig', 3);
+  % }}}
+
+  % rounding {{{
+  f = 10 .^ floor(log10(abs(x)) - (sig - 1));
+  y = round(x ./ f) .* f;
+  % }}}
 return
+
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Mon 11 Jul 2016 02:54:29 PM E

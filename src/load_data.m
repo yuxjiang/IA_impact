@@ -1,4 +1,6 @@
-%LOAD_DATA Load data
+%script
+%
+% Load data
 %
 % This script load pre-computed data into workspace
 %
@@ -23,6 +25,6 @@ load ../data/predictor/blast.mat
 load ../data/predictor/com.mat
 
 % curves
-load ../result/curves/gotcha_curves.mat 
+load ../result/curves/gotcha_curves.mat
 load ../result/curves/blast_curves.mat
 load ../result/curves/com_curves.mat
