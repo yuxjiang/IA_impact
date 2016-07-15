@@ -28,39 +28,39 @@
 % Dependency
 % ----------
 %[>]pfp_predproj.m
-%[>]pfp_f1max.m
+%[>]f1max_from_curve.m
 
 % GOtcha {{{
-f1max.gotcha.mfo.f2011 = pfp_f1max(gotcha_prcurve.mfo.c2011);
-f1max.gotcha.mfo.f2014 = pfp_f1max(gotcha_prcurve.mfo.c2014);
+f1max.gotcha.mfo.f2011 = f1max_from_curve(gotcha_prcurve.mfo.c2011);
+f1max.gotcha.mfo.f2014 = f1max_from_curve(gotcha_prcurve.mfo.c2014);
 
-f1max.gotcha.bpo.f2011 = pfp_f1max(gotcha_prcurve.bpo.c2011);
-f1max.gotcha.bpo.f2014 = pfp_f1max(gotcha_prcurve.bpo.c2014);
+f1max.gotcha.bpo.f2011 = f1max_from_curve(gotcha_prcurve.bpo.c2011);
+f1max.gotcha.bpo.f2014 = f1max_from_curve(gotcha_prcurve.bpo.c2014);
 
-f1max.gotcha.cco.f2011 = pfp_f1max(gotcha_prcurve.cco.c2011);
-f1max.gotcha.cco.f2014 = pfp_f1max(gotcha_prcurve.cco.c2014);
+f1max.gotcha.cco.f2011 = f1max_from_curve(gotcha_prcurve.cco.c2011);
+f1max.gotcha.cco.f2014 = f1max_from_curve(gotcha_prcurve.cco.c2014);
 % }}}
 
 % BLAST {{{
-f1max.blast.mfo.f2011 = pfp_f1max(blast_prcurve.mfo.c2011);
-f1max.blast.mfo.f2014 = pfp_f1max(blast_prcurve.mfo.c2014);
+f1max.blast.mfo.f2011 = f1max_from_curve(blast_prcurve.mfo.c2011);
+f1max.blast.mfo.f2014 = f1max_from_curve(blast_prcurve.mfo.c2014);
 
-f1max.blast.bpo.f2011 = pfp_f1max(blast_prcurve.bpo.c2011);
-f1max.blast.bpo.f2014 = pfp_f1max(blast_prcurve.bpo.c2014);
+f1max.blast.bpo.f2011 = f1max_from_curve(blast_prcurve.bpo.c2011);
+f1max.blast.bpo.f2014 = f1max_from_curve(blast_prcurve.bpo.c2014);
 
-f1max.blast.cco.f2011 = pfp_f1max(blast_prcurve.cco.c2011);
-f1max.blast.cco.f2014 = pfp_f1max(blast_prcurve.cco.c2014);
+f1max.blast.cco.f2011 = f1max_from_curve(blast_prcurve.cco.c2011);
+f1max.blast.cco.f2014 = f1max_from_curve(blast_prcurve.cco.c2014);
 % }}}
 
 % Swiss-Prot {{{
-f1max.com.mfo.f2011 = pfp_f1max(com_prcurve.mfo.c2011);
-f1max.com.mfo.f2014 = pfp_f1max(com_prcurve.mfo.c2014);
+f1max.com.mfo.f2011 = f1max_from_curve(com_prcurve.mfo.c2011);
+f1max.com.mfo.f2014 = f1max_from_curve(com_prcurve.mfo.c2014);
 
-f1max.com.bpo.f2011 = pfp_f1max(com_prcurve.bpo.c2011);
-f1max.com.bpo.f2014 = pfp_f1max(com_prcurve.bpo.c2014);
+f1max.com.bpo.f2011 = f1max_from_curve(com_prcurve.bpo.c2011);
+f1max.com.bpo.f2014 = f1max_from_curve(com_prcurve.bpo.c2014);
 
-f1max.com.cco.f2011 = pfp_f1max(com_prcurve.cco.c2011);
-f1max.com.cco.f2014 = pfp_f1max(com_prcurve.cco.c2014);
+f1max.com.cco.f2011 = f1max_from_curve(com_prcurve.cco.c2011);
+f1max.com.cco.f2014 = f1max_from_curve(com_prcurve.cco.c2014);
 % }}}
 
 % difference of F_1 in percentage {{{

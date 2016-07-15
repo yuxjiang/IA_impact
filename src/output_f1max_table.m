@@ -58,7 +58,7 @@
 % Dependency
 % ----------
 %[>]pfp_predproj.m
-%[>]pfp_f1max.m
+%[>]f1max_from_curve.m
 
 % setting up {{{
 tar_ia.t12.mfo = tarlist_ia.t12.mfo.object;
@@ -132,29 +132,29 @@ mapped_c_ia.t14.cco = pfp_predproj(com.cco, tar_ia.t14.cco, 'object');
 
 % computing {{{
 % GOtcha {{{
-f1max.gotcha.mfo.f2011 = pfp_f1max(gotcha_prcurve.mfo.c2011);
-f1max.gotcha.mfo.f2012 = pfp_f1max(gotcha_prcurve_ia.mfo.b2012);
-f1max.gotcha.mfo.f2013 = pfp_f1max(gotcha_prcurve_ia.mfo.b2013);
-f1max.gotcha.mfo.f2014 = pfp_f1max(gotcha_prcurve_ia.mfo.b2014);
-f1max.gotcha.mfo.g2012 = pfp_f1max(gotcha_prcurve_ia.mfo.c2012);
-f1max.gotcha.mfo.g2013 = pfp_f1max(gotcha_prcurve_ia.mfo.c2013);
-f1max.gotcha.mfo.g2014 = pfp_f1max(gotcha_prcurve_ia.mfo.c2014);
+f1max.gotcha.mfo.f2011 = f1max_from_curve(gotcha_prcurve.mfo.c2011);
+f1max.gotcha.mfo.f2012 = f1max_from_curve(gotcha_prcurve_ia.mfo.b2012);
+f1max.gotcha.mfo.f2013 = f1max_from_curve(gotcha_prcurve_ia.mfo.b2013);
+f1max.gotcha.mfo.f2014 = f1max_from_curve(gotcha_prcurve_ia.mfo.b2014);
+f1max.gotcha.mfo.g2012 = f1max_from_curve(gotcha_prcurve_ia.mfo.c2012);
+f1max.gotcha.mfo.g2013 = f1max_from_curve(gotcha_prcurve_ia.mfo.c2013);
+f1max.gotcha.mfo.g2014 = f1max_from_curve(gotcha_prcurve_ia.mfo.c2014);
 
-f1max.gotcha.bpo.f2011 = pfp_f1max(gotcha_prcurve.bpo.c2011);
-f1max.gotcha.bpo.f2012 = pfp_f1max(gotcha_prcurve_ia.bpo.b2012);
-f1max.gotcha.bpo.f2013 = pfp_f1max(gotcha_prcurve_ia.bpo.b2013);
-f1max.gotcha.bpo.f2014 = pfp_f1max(gotcha_prcurve_ia.bpo.b2014);
-f1max.gotcha.bpo.g2012 = pfp_f1max(gotcha_prcurve_ia.bpo.c2012);
-f1max.gotcha.bpo.g2013 = pfp_f1max(gotcha_prcurve_ia.bpo.c2013);
-f1max.gotcha.bpo.g2014 = pfp_f1max(gotcha_prcurve_ia.bpo.c2014);
+f1max.gotcha.bpo.f2011 = f1max_from_curve(gotcha_prcurve.bpo.c2011);
+f1max.gotcha.bpo.f2012 = f1max_from_curve(gotcha_prcurve_ia.bpo.b2012);
+f1max.gotcha.bpo.f2013 = f1max_from_curve(gotcha_prcurve_ia.bpo.b2013);
+f1max.gotcha.bpo.f2014 = f1max_from_curve(gotcha_prcurve_ia.bpo.b2014);
+f1max.gotcha.bpo.g2012 = f1max_from_curve(gotcha_prcurve_ia.bpo.c2012);
+f1max.gotcha.bpo.g2013 = f1max_from_curve(gotcha_prcurve_ia.bpo.c2013);
+f1max.gotcha.bpo.g2014 = f1max_from_curve(gotcha_prcurve_ia.bpo.c2014);
 
-f1max.gotcha.cco.f2011 = pfp_f1max(gotcha_prcurve.cco.c2011);
-f1max.gotcha.cco.f2012 = pfp_f1max(gotcha_prcurve_ia.cco.b2012);
-f1max.gotcha.cco.f2013 = pfp_f1max(gotcha_prcurve_ia.cco.b2013);
-f1max.gotcha.cco.f2014 = pfp_f1max(gotcha_prcurve_ia.cco.b2014);
-f1max.gotcha.cco.g2012 = pfp_f1max(gotcha_prcurve_ia.cco.c2012);
-f1max.gotcha.cco.g2013 = pfp_f1max(gotcha_prcurve_ia.cco.c2013);
-f1max.gotcha.cco.g2014 = pfp_f1max(gotcha_prcurve_ia.cco.c2014);
+f1max.gotcha.cco.f2011 = f1max_from_curve(gotcha_prcurve.cco.c2011);
+f1max.gotcha.cco.f2012 = f1max_from_curve(gotcha_prcurve_ia.cco.b2012);
+f1max.gotcha.cco.f2013 = f1max_from_curve(gotcha_prcurve_ia.cco.b2013);
+f1max.gotcha.cco.f2014 = f1max_from_curve(gotcha_prcurve_ia.cco.b2014);
+f1max.gotcha.cco.g2012 = f1max_from_curve(gotcha_prcurve_ia.cco.c2012);
+f1max.gotcha.cco.g2013 = f1max_from_curve(gotcha_prcurve_ia.cco.c2013);
+f1max.gotcha.cco.g2014 = f1max_from_curve(gotcha_prcurve_ia.cco.c2014);
 
 coverage.gotcha.mfo.c2011 = full(sum(max(mapped_g.mfo.score, [], 2) ~= 0))/numel(tarlist_all.mfo)*100;
 coverage.gotcha.bpo.c2011 = full(sum(max(mapped_g.bpo.score, [], 2) ~= 0))/numel(tarlist_all.bpo)*100;
@@ -186,29 +186,29 @@ df1.gotcha.cco.d2014 = f1max.gotcha.cco.g2014 - f1max.gotcha.cco.f2014;
 % }}}
 
 % BLAST {{{
-f1max.blast.mfo.f2011 = pfp_f1max(blast_prcurve.mfo.c2011);
-f1max.blast.mfo.f2012 = pfp_f1max(blast_prcurve_ia.mfo.b2012);
-f1max.blast.mfo.f2013 = pfp_f1max(blast_prcurve_ia.mfo.b2013);
-f1max.blast.mfo.f2014 = pfp_f1max(blast_prcurve_ia.mfo.b2014);
-f1max.blast.mfo.g2012 = pfp_f1max(blast_prcurve_ia.mfo.c2012);
-f1max.blast.mfo.g2013 = pfp_f1max(blast_prcurve_ia.mfo.c2013);
-f1max.blast.mfo.g2014 = pfp_f1max(blast_prcurve_ia.mfo.c2014);
+f1max.blast.mfo.f2011 = f1max_from_curve(blast_prcurve.mfo.c2011);
+f1max.blast.mfo.f2012 = f1max_from_curve(blast_prcurve_ia.mfo.b2012);
+f1max.blast.mfo.f2013 = f1max_from_curve(blast_prcurve_ia.mfo.b2013);
+f1max.blast.mfo.f2014 = f1max_from_curve(blast_prcurve_ia.mfo.b2014);
+f1max.blast.mfo.g2012 = f1max_from_curve(blast_prcurve_ia.mfo.c2012);
+f1max.blast.mfo.g2013 = f1max_from_curve(blast_prcurve_ia.mfo.c2013);
+f1max.blast.mfo.g2014 = f1max_from_curve(blast_prcurve_ia.mfo.c2014);
 
-f1max.blast.bpo.f2011 = pfp_f1max(blast_prcurve.bpo.c2011);
-f1max.blast.bpo.f2012 = pfp_f1max(blast_prcurve_ia.bpo.b2012);
-f1max.blast.bpo.f2013 = pfp_f1max(blast_prcurve_ia.bpo.b2013);
-f1max.blast.bpo.f2014 = pfp_f1max(blast_prcurve_ia.bpo.b2014);
-f1max.blast.bpo.g2012 = pfp_f1max(blast_prcurve_ia.bpo.c2012);
-f1max.blast.bpo.g2013 = pfp_f1max(blast_prcurve_ia.bpo.c2013);
-f1max.blast.bpo.g2014 = pfp_f1max(blast_prcurve_ia.bpo.c2014);
+f1max.blast.bpo.f2011 = f1max_from_curve(blast_prcurve.bpo.c2011);
+f1max.blast.bpo.f2012 = f1max_from_curve(blast_prcurve_ia.bpo.b2012);
+f1max.blast.bpo.f2013 = f1max_from_curve(blast_prcurve_ia.bpo.b2013);
+f1max.blast.bpo.f2014 = f1max_from_curve(blast_prcurve_ia.bpo.b2014);
+f1max.blast.bpo.g2012 = f1max_from_curve(blast_prcurve_ia.bpo.c2012);
+f1max.blast.bpo.g2013 = f1max_from_curve(blast_prcurve_ia.bpo.c2013);
+f1max.blast.bpo.g2014 = f1max_from_curve(blast_prcurve_ia.bpo.c2014);
 
-f1max.blast.cco.f2011 = pfp_f1max(blast_prcurve.cco.c2011);
-f1max.blast.cco.f2012 = pfp_f1max(blast_prcurve_ia.cco.b2012);
-f1max.blast.cco.f2013 = pfp_f1max(blast_prcurve_ia.cco.b2013);
-f1max.blast.cco.f2014 = pfp_f1max(blast_prcurve_ia.cco.b2014);
-f1max.blast.cco.g2012 = pfp_f1max(blast_prcurve_ia.cco.c2012);
-f1max.blast.cco.g2013 = pfp_f1max(blast_prcurve_ia.cco.c2013);
-f1max.blast.cco.g2014 = pfp_f1max(blast_prcurve_ia.cco.c2014);
+f1max.blast.cco.f2011 = f1max_from_curve(blast_prcurve.cco.c2011);
+f1max.blast.cco.f2012 = f1max_from_curve(blast_prcurve_ia.cco.b2012);
+f1max.blast.cco.f2013 = f1max_from_curve(blast_prcurve_ia.cco.b2013);
+f1max.blast.cco.f2014 = f1max_from_curve(blast_prcurve_ia.cco.b2014);
+f1max.blast.cco.g2012 = f1max_from_curve(blast_prcurve_ia.cco.c2012);
+f1max.blast.cco.g2013 = f1max_from_curve(blast_prcurve_ia.cco.c2013);
+f1max.blast.cco.g2014 = f1max_from_curve(blast_prcurve_ia.cco.c2014);
 
 coverage.blast.mfo.c2011 = full(sum(max(mapped_b.mfo.score, [], 2) ~= 0))/numel(tarlist_all.mfo)*100;
 coverage.blast.bpo.c2011 = full(sum(max(mapped_b.bpo.score, [], 2) ~= 0))/numel(tarlist_all.bpo)*100;
@@ -240,29 +240,29 @@ df1.blast.cco.d2014 = f1max.blast.cco.g2014 - f1max.blast.cco.f2014;
 % }}}
 
 % Swiss-Prot {{{
-f1max.com.mfo.f2011 = pfp_f1max(com_prcurve.mfo.c2011);
-f1max.com.mfo.f2012 = pfp_f1max(com_prcurve_ia.mfo.b2012);
-f1max.com.mfo.f2013 = pfp_f1max(com_prcurve_ia.mfo.b2013);
-f1max.com.mfo.f2014 = pfp_f1max(com_prcurve_ia.mfo.b2014);
-f1max.com.mfo.g2012 = pfp_f1max(com_prcurve_ia.mfo.c2012);
-f1max.com.mfo.g2013 = pfp_f1max(com_prcurve_ia.mfo.c2013);
-f1max.com.mfo.g2014 = pfp_f1max(com_prcurve_ia.mfo.c2014);
+f1max.com.mfo.f2011 = f1max_from_curve(com_prcurve.mfo.c2011);
+f1max.com.mfo.f2012 = f1max_from_curve(com_prcurve_ia.mfo.b2012);
+f1max.com.mfo.f2013 = f1max_from_curve(com_prcurve_ia.mfo.b2013);
+f1max.com.mfo.f2014 = f1max_from_curve(com_prcurve_ia.mfo.b2014);
+f1max.com.mfo.g2012 = f1max_from_curve(com_prcurve_ia.mfo.c2012);
+f1max.com.mfo.g2013 = f1max_from_curve(com_prcurve_ia.mfo.c2013);
+f1max.com.mfo.g2014 = f1max_from_curve(com_prcurve_ia.mfo.c2014);
 
-f1max.com.bpo.f2011 = pfp_f1max(com_prcurve.bpo.c2011);
-f1max.com.bpo.f2012 = pfp_f1max(com_prcurve_ia.bpo.b2012);
-f1max.com.bpo.f2013 = pfp_f1max(com_prcurve_ia.bpo.b2013);
-f1max.com.bpo.f2014 = pfp_f1max(com_prcurve_ia.bpo.b2014);
-f1max.com.bpo.g2012 = pfp_f1max(com_prcurve_ia.bpo.c2012);
-f1max.com.bpo.g2013 = pfp_f1max(com_prcurve_ia.bpo.c2013);
-f1max.com.bpo.g2014 = pfp_f1max(com_prcurve_ia.bpo.c2014);
+f1max.com.bpo.f2011 = f1max_from_curve(com_prcurve.bpo.c2011);
+f1max.com.bpo.f2012 = f1max_from_curve(com_prcurve_ia.bpo.b2012);
+f1max.com.bpo.f2013 = f1max_from_curve(com_prcurve_ia.bpo.b2013);
+f1max.com.bpo.f2014 = f1max_from_curve(com_prcurve_ia.bpo.b2014);
+f1max.com.bpo.g2012 = f1max_from_curve(com_prcurve_ia.bpo.c2012);
+f1max.com.bpo.g2013 = f1max_from_curve(com_prcurve_ia.bpo.c2013);
+f1max.com.bpo.g2014 = f1max_from_curve(com_prcurve_ia.bpo.c2014);
 
-f1max.com.cco.f2011 = pfp_f1max(com_prcurve.cco.c2011);
-f1max.com.cco.f2012 = pfp_f1max(com_prcurve_ia.cco.b2012);
-f1max.com.cco.f2013 = pfp_f1max(com_prcurve_ia.cco.b2013);
-f1max.com.cco.f2014 = pfp_f1max(com_prcurve_ia.cco.b2014);
-f1max.com.cco.g2012 = pfp_f1max(com_prcurve_ia.cco.c2012);
-f1max.com.cco.g2013 = pfp_f1max(com_prcurve_ia.cco.c2013);
-f1max.com.cco.g2014 = pfp_f1max(com_prcurve_ia.cco.c2014);
+f1max.com.cco.f2011 = f1max_from_curve(com_prcurve.cco.c2011);
+f1max.com.cco.f2012 = f1max_from_curve(com_prcurve_ia.cco.b2012);
+f1max.com.cco.f2013 = f1max_from_curve(com_prcurve_ia.cco.b2013);
+f1max.com.cco.f2014 = f1max_from_curve(com_prcurve_ia.cco.b2014);
+f1max.com.cco.g2012 = f1max_from_curve(com_prcurve_ia.cco.c2012);
+f1max.com.cco.g2013 = f1max_from_curve(com_prcurve_ia.cco.c2013);
+f1max.com.cco.g2014 = f1max_from_curve(com_prcurve_ia.cco.c2014);
 
 coverage.com.mfo.c2011 = full(sum(max(mapped_c.mfo.score, [], 2) ~= 0))/numel(tarlist_all.mfo)*100;
 coverage.com.bpo.c2011 = full(sum(max(mapped_c.bpo.score, [], 2) ~= 0))/numel(tarlist_all.bpo)*100;
@@ -346,7 +346,6 @@ d_ptn2 = [...
 '& & $%.3f~(%.1f\\%%)$ & $%+.3f$ \\\\\n'];
 
 fid = fopen('../table/f1max_table.tex', 'w');
-
 fprintf(fid, '\\begin{tabular}{c|cccc|cccc|cccc}\n');
 fprintf(fid, t_ptn);
 fprintf(fid, t_ptn2, 2011);
@@ -420,4 +419,4 @@ clear mapped_g* mapped_b* mapped_c* tar_ia t_ptn* d_ptn* gotcha_ptn* fid f1max d
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Wed 13 Jul 2016 01:59:12 PM E
+% Last modified: Thu 14 Jul 2016 05:09:41 PM E

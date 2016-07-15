@@ -19,7 +19,7 @@ function [f] = absolute_change_in_F(pr, rc, p)
 % Output
 % ------
 % [double]
-% f:  absolute change in F1-measure
+% f:  The absolute change in F1-measure
 
   % check inputs {{{
   if nargin ~= 3
@@ -47,4 +47,4 @@ return
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Wed 13 Jul 2016 01:22:59 PM E
+% Last modified: Wed 13 Jul 2016 02:21:03 PM E

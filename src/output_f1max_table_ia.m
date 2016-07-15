@@ -58,7 +58,7 @@
 % Dependency
 % ----------
 %[>]pfp_predproj.m
-%[>]pfp_f1max.m
+%[>]f1max_from_curve.m
 
 % preparing {{{
 tar_ia.t14.mfo = tarlist_ia.t14.mfo.object;
@@ -100,14 +100,14 @@ mapped_c_ia.t14.cco = pfp_predproj(com.cco, tar_ia.t14.cco, 'object');
 
 % computing {{{
 % GOtcha {{{
-f1max.gotcha.mfo.f2014 = pfp_f1max(gotcha_prcurve_ia.mfo.b2014);
-f1max.gotcha.mfo.g2014 = pfp_f1max(gotcha_prcurve_ia.mfo.c2014);
+f1max.gotcha.mfo.f2014 = f1max_from_curve(gotcha_prcurve_ia.mfo.b2014);
+f1max.gotcha.mfo.g2014 = f1max_from_curve(gotcha_prcurve_ia.mfo.c2014);
 
-f1max.gotcha.bpo.f2014 = pfp_f1max(gotcha_prcurve_ia.bpo.b2014);
-f1max.gotcha.bpo.g2014 = pfp_f1max(gotcha_prcurve_ia.bpo.c2014);
+f1max.gotcha.bpo.f2014 = f1max_from_curve(gotcha_prcurve_ia.bpo.b2014);
+f1max.gotcha.bpo.g2014 = f1max_from_curve(gotcha_prcurve_ia.bpo.c2014);
 
-f1max.gotcha.cco.f2014 = pfp_f1max(gotcha_prcurve_ia.cco.b2014);
-f1max.gotcha.cco.g2014 = pfp_f1max(gotcha_prcurve_ia.cco.c2014);
+f1max.gotcha.cco.f2014 = f1max_from_curve(gotcha_prcurve_ia.cco.b2014);
+f1max.gotcha.cco.g2014 = f1max_from_curve(gotcha_prcurve_ia.cco.c2014);
 
 coverage.gotcha.mfo.c2014 = full(sum(max(mapped_g_ia.t14.mfo.score, [], 2) ~= 0))/numel(tar_ia.t14.mfo)*100;
 coverage.gotcha.bpo.c2014 = full(sum(max(mapped_g_ia.t14.bpo.score, [], 2) ~= 0))/numel(tar_ia.t14.bpo)*100;
@@ -119,14 +119,14 @@ df1.gotcha.cco.d2014 = f1max.gotcha.cco.g2014 - f1max.gotcha.cco.f2014;
 % }}}
 
 % BLAST {{{
-f1max.blast.mfo.f2014 = pfp_f1max(blast_prcurve_ia.mfo.b2014);
-f1max.blast.mfo.g2014 = pfp_f1max(blast_prcurve_ia.mfo.c2014);
+f1max.blast.mfo.f2014 = f1max_from_curve(blast_prcurve_ia.mfo.b2014);
+f1max.blast.mfo.g2014 = f1max_from_curve(blast_prcurve_ia.mfo.c2014);
 
-f1max.blast.bpo.f2014 = pfp_f1max(blast_prcurve_ia.bpo.b2014);
-f1max.blast.bpo.g2014 = pfp_f1max(blast_prcurve_ia.bpo.c2014);
+f1max.blast.bpo.f2014 = f1max_from_curve(blast_prcurve_ia.bpo.b2014);
+f1max.blast.bpo.g2014 = f1max_from_curve(blast_prcurve_ia.bpo.c2014);
 
-f1max.blast.cco.f2014 = pfp_f1max(blast_prcurve_ia.cco.b2014);
-f1max.blast.cco.g2014 = pfp_f1max(blast_prcurve_ia.cco.c2014);
+f1max.blast.cco.f2014 = f1max_from_curve(blast_prcurve_ia.cco.b2014);
+f1max.blast.cco.g2014 = f1max_from_curve(blast_prcurve_ia.cco.c2014);
 
 coverage.blast.mfo.c2014 = full(sum(max(mapped_b_ia.t14.mfo.score, [], 2) ~= 0))/numel(tar_ia.t14.mfo)*100;
 coverage.blast.bpo.c2014 = full(sum(max(mapped_b_ia.t14.bpo.score, [], 2) ~= 0))/numel(tar_ia.t14.bpo)*100;
@@ -138,14 +138,14 @@ df1.blast.cco.d2014 = f1max.blast.cco.g2014 - f1max.blast.cco.f2014;
 % }}}
 
 % Swiss-Prot {{{
-f1max.com.mfo.f2014 = pfp_f1max(com_prcurve_ia.mfo.b2014);
-f1max.com.mfo.g2014 = pfp_f1max(com_prcurve_ia.mfo.c2014);
+f1max.com.mfo.f2014 = f1max_from_curve(com_prcurve_ia.mfo.b2014);
+f1max.com.mfo.g2014 = f1max_from_curve(com_prcurve_ia.mfo.c2014);
 
-f1max.com.bpo.f2014 = pfp_f1max(com_prcurve_ia.bpo.b2014);
-f1max.com.bpo.g2014 = pfp_f1max(com_prcurve_ia.bpo.c2014);
+f1max.com.bpo.f2014 = f1max_from_curve(com_prcurve_ia.bpo.b2014);
+f1max.com.bpo.g2014 = f1max_from_curve(com_prcurve_ia.bpo.c2014);
 
-f1max.com.cco.f2014 = pfp_f1max(com_prcurve_ia.cco.b2014);
-f1max.com.cco.g2014 = pfp_f1max(com_prcurve_ia.cco.c2014);
+f1max.com.cco.f2014 = f1max_from_curve(com_prcurve_ia.cco.b2014);
+f1max.com.cco.g2014 = f1max_from_curve(com_prcurve_ia.cco.c2014);
 
 coverage.com.mfo.c2014 = full(sum(max(mapped_c_ia.t14.mfo.score, [], 2) ~= 0))/numel(tar_ia.t14.mfo)*100;
 coverage.com.bpo.c2014 = full(sum(max(mapped_c_ia.t14.bpo.score, [], 2) ~= 0))/numel(tar_ia.t14.bpo)*100;
@@ -211,4 +211,4 @@ clear mapped_g* mapped_b* mapped_c* tar_ia t_ptn* d_ptn* fid f1max df1 coverage 
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Mon 11 Jul 2016 05:09:29 PM E
+% Last modified: Thu 14 Jul 2016 05:26:13 PM E

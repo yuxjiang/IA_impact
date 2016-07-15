@@ -7,41 +7,41 @@
 %
 % Note
 % ----
-% !Specifiy the output director as 'out_dir' before run this script!
+% Specifiy the output director as 'out_dir' before run this script!
 %
-% This script assumes the follow curves:
+% Require
+% -------
 % gotcha_prcurve
-%   [bpo], [cco], [mfo] and each of them has 4 curves:
-%   [c2011], [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 4 curves:
+%   .c2011, .c2012, .c2013, .c2014
 %
 % gotcha_prcurve_ia
-%   [bpo], [cco], [mfo] and each of them has 3 curves:
-%   [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 3 curves:
+%   .c2012, .c2013, .c2014
 %
 % blast_prcurve
-%   [bpo], [cco], [mfo] and each of them has 4 curves:
-%   [c2011], [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 4 curves:
+%   .c2011, .c2012, .c2013, .c2014
 %
 % blast_prcurve_ia
-%   [bpo], [cco], [mfo] and each of them has 3 curves:
-%   [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 3 curves:
+%   .c2012, .c2013, .c2014
 %
 % com_prcurve
-%   [bpo], [cco], [mfo] and each of them has 4 curves:
-%   [c2011], [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 4 curves:
+%   .c2011, .c2012, .c2013, .c2014
 %
 % com_prcurve_ia
-%   [bpo], [cco], [mfo] and each of them has 3 curves:
-%   [c2012], [c2013], [c2014]
+%   .bpo, .cco, .mfo and each of them has 3 curves:
+%   .c2012, .c2013, .c2014
 %
-% Output
-% ------
+% Provide
+% -------
 % None.
 
 % set output dir {{{
-out_dir = '~/Documents/ia_results/curves_np';
-
-if exist(out_dir, 'd')
+out_dir = '../result/curves';
+if ~exist(out_dir, 'dir')
   mkdir(out_dir);
 end
 % }}}
@@ -187,4 +187,4 @@ fclose(fid);
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Mon 11 Jul 2016 04:47:01 PM E
+% Last modified: Thu 14 Jul 2016 11:38:14 PM E

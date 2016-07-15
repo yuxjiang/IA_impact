@@ -1,67 +1,125 @@
-function [] = plot_delta_mle(delta1, delta2, delta3, t)
+function [] = plot_delta_mle(pfile, pttl, delta1, delta2, delta3)
+%PLOT_DELTA_MLE Plot delta MLE
 %
-% Input:
-%   delta1:     observation of delta in one year span
+% Input
+% -----
+% [char]
+% pfile:  The filename of the plot.
+%         Note that file extension must be either 'eps' or 'png'.
+%         default: 'png'
 %
-%   delta2:     observation of delta in two years span
+% [char]
+% pttl:   The plot title. If the title is given as empty, it will be set to
+%         'MLE (exponential) of incomplete annotation'
 %
-%   delta3:     observation of delta in three years span
+% [double]
+% delta1: The observation of delta in one year span
 %
-%   t:          plot title
+% [double]
+% delta2: The observation of delta in two years span
 %
-% -------------
-% Yuxiang Jiang
-% School of Informatics and Computing
-% Indiana University Bloomington
-% Last modified: Thu 13 Feb 2014 10:55:46 AM EST
+% [double]
+% delta3: The observation of delta in three years span
+%
+% Output
+% ------
+% None.
+%
+% Dependency
+% ----------
+%[>]embed_canvas.m
+%[>]pfp_rgby.m
 
-    if nargin == 3
-        t = 'MLE (exponential) of incomplete annotation';
-    end
+  % check inputs {{{
+  if nargin ~= 5
+    error('plot_delta_mle:InputCount', 'Expected 5 inputs.');
+  end
 
-    % mle (distribution = exponential)
-    lambda1 = 1 / mean(delta1);
-    lambda2 = 1 / mean(delta2);
-    lambda3 = 1 / mean(delta3);
+  % pfile
+  validateattributes(pfile, {'char'}, {'nonempty'}, '', 'pfile', 1);
+  [p, f, e] = fileparts(pfile);
+  if isempty(e)
+    e = '.png';
+  end
+  ext = validatestring(e, {'.eps', '.png'}, '', 'pfile', 1);
+  if strcmp(ext, '.eps')
+    device_op = '-depsc';
+  elseif strcmp(ext, '.png')
+    device_op = '-dpng';
+  end
 
-    pdf = @(x, lambda) lambda * exp(-lambda * x);
-    [h1, c1] = hist(delta1, 100);
-    [h2, c2] = hist(delta2, 100);
-    [h3, c3] = hist(delta3, 100);
+  % pttl
+  validateattributes(pttl, {'char'}, {}, '', 'pttl', 2);
+  if isempty(pttl)
+    pttl = 'MLE (exponential) of incomplete annotation';
+  end
 
-    f1 = pdf(c1, lambda1);
-    f2 = pdf(c2, lambda2);
-    f3 = pdf(c3, lambda3);
+  % delta1
+  validateattributes(delta1, {'double'}, {'nonempty'}, '', 'delta1', 3);
 
-    h1 = h1 ./ sum(h1) .* sum(f1);
-    h2 = h2 ./ sum(h2) .* sum(f2);
-    h3 = h3 ./ sum(h3) .* sum(f3);
+  % delta2
+  validateattributes(delta2, {'double'}, {'nonempty'}, '', 'delta2', 4);
 
-    xmin = min([c1 c2 c3]);
-    xmax = max([c1 c2 c3]);
-    h = [h1 h2 h3];
-    h(h == 0) = [];
-    ymin = min(h);
-    ymax = max([h1 h2 h3]);
+  % delta3
+  validateattributes(delta3, {'double'}, {'nonempty'}, '', 'delta3', 5);
+  % }}}
 
-    col1 = [.5 .5 .9];
-    col2 = [.5 .9 .5];
-    col3 = [.9 .5 .5];
+  % estimate {{{
+  % mle (distribution = exponential)
+  lambda1 = 1 / mean(delta1);
+  lambda2 = 1 / mean(delta2);
+  lambda3 = 1 / mean(delta3);
 
-    figure; grid on;
-    semilogy(c1, h1, 'o-', 'color', col1);
-    hold on;
-    semilogy(c2, h2, '+-', 'color', col2);
-    semilogy(c3, h3, 's-', 'color', col3);
-    axis([xmin xmax ymin ymax]);
+  pdf = @(x, lambda) lambda * exp(-lambda * x);
+  [h1, c1] = hist(delta1, 100);
+  [h2, c2] = hist(delta2, 100);
+  [h3, c3] = hist(delta3, 100);
 
-    legend('1 year layer', '2 years later', '3 years later');
-    semilogy(c1, f1, '--', 'color', col1 - 0.2, 'LineWidth', 2);
-    semilogy(c2, f2, '--', 'color', col2 - 0.2, 'LineWidth', 2);
-    semilogy(c3, f3, '--', 'color', col3 - 0.2, 'LineWidth', 2);
+  f1 = pdf(c1, lambda1);
+  f2 = pdf(c2, lambda2);
+  f3 = pdf(c3, lambda3);
 
-    title(t);
-    xlabel('size of incomplete annotation (\delta)');
-    ylabel('density');
-    hold off;
+  h1 = h1 ./ sum(h1) .* sum(f1);
+  h2 = h2 ./ sum(h2) .* sum(f2);
+  h3 = h3 ./ sum(h3) .* sum(f3);
+  % }}}
+
+  % setting {{{
+  xmin = min([c1 c2 c3]);
+  xmax = max([c1 c2 c3]);
+  h = [h1 h2 h3];
+  h(h == 0) = [];
+  ymin = min(h);
+  ymax = max([h1 h2 h3]);
+
+  [col1, col2, col3, ~] = pfp_rgby;
+  % }}}
+
+  % plot {{{
+  h = figure('Visible', 'off');
+  grid on;
+  hold on;
+  semilogy(c1, h1, 'o-', 'color', mean([col1;1,1,1]));
+  semilogy(c2, h2, '+-', 'color', mean([col2;1,1,1]));
+  semilogy(c3, h3, 's-', 'color', mean([col3;1,1,1]));
+  axis([xmin xmax ymin ymax]);
+
+  legend('1 year later', '2 years later', '3 years later');
+  semilogy(c1, f1, '--', 'color', col1, 'LineWidth', 2);
+  semilogy(c2, f2, '--', 'color', col2, 'LineWidth', 2);
+  semilogy(c3, f3, '--', 'color', col3, 'LineWidth', 2);
+
+  title(pttl);
+  xlabel('size of incomplete annotation (\delta)');
+  ylabel('density');
+
+  print(embed_canvas(h, 6, 5), pfile, device_op, '-r300');
+  close;
+  % }}}
 return
+
+% -------------
+% Yuxiang Jiang (yuxjiang@indiana.edu)
+% Department of Computer Science
+% Indiana University, Bloomington
+% Last modified: Wed 13 Jul 2016 04:07:19 PM E

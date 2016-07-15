@@ -25,7 +25,7 @@ function [Dabs, Drel] = sim_impact_rm(ru_max, mi_max, resol, N, g, d, k, ofile)
 %
 % lambda ~ Beta(gamma-ru, ru)
 %
-% Note that the Expectation of lambda is 
+% Note that the Expectation of lambda is
 %
 %             gamma - ru
 % E[lambda] = ----------
@@ -34,7 +34,7 @@ function [Dabs, Drel] = sim_impact_rm(ru_max, mi_max, resol, N, g, d, k, ofile)
 % [Dabs, Drel] = SIM_IMPACT_RM(ru_max, mi_max, resol, N, obs_g, obs_d, k, ofile);
 %
 %   The incompleteness is sampled from the given data.
-%       
+%
 % Input
 % -----
 % [double]
@@ -70,7 +70,7 @@ function [Dabs, Drel] = sim_impact_rm(ru_max, mi_max, resol, N, g, d, k, ofile)
 %
 % [char]
 % ofile:  The full path of output data, for example, if the given 'ofile' is
-%         /path/to/file.dat the output will be 
+%         /path/to/file.dat the output will be
 %         /path/to/abs_file.dat and
 %         /path/to/rel_file.dat
 %
@@ -223,7 +223,7 @@ function [sample] = generate_sample(N, obs, ctr, bw)
 % bw    - bin width (bandwidth)
 
   % uniformly pick one of n points
-  i = randi(numel(obs), N, 1); 
+  i = randi(numel(obs), N, 1);
 
   % locate bin
   [~, idx] = min(abs(bsxfun(@minus, reshape(obs(i), 1, []), reshape(ctr, [], 1))));
@@ -237,4 +237,4 @@ return
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Tue 12 Jul 2016 05:19:57 PM E
+% Last modified: Fri 15 Jul 2016 04:44:17 PM E

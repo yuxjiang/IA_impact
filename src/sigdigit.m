@@ -22,11 +22,11 @@ function [y] = sigdigit(x, sig)
 % y:  The trimed double values.
 
   % check inputs {{{
-  if nargin ~=2 && nargin ~=3
-    error('sigdigit:InputCount', 'Expected 2 or 3 inputs.');
+  if nargin ~=1 && nargin ~=2
+    error('sigdigit:InputCount', 'Expected 1 or 2 inputs.');
   end
 
-  if nargin == 2
+  if nargin == 1
     sig = 3;
   end
 
@@ -47,4 +47,4 @@ return
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Mon 11 Jul 2016 02:54:29 PM E
+% Last modified: Thu 14 Jul 2016 05:24:30 PM E

@@ -28,7 +28,8 @@ function [GAMMA, DELTA, recall] = collect_gamma_delta_recall(pred, oa0, oa1)
 % GAMMA:  An n-by-1 observations of GAMMA, i.e., the number of annotation at t0.
 %
 % [double]
-% DELTA:  An n-by-1 observations of DELTA, i.e., the number of incomplete annotation.
+% DELTA:  An n-by-1 observations of DELTA, i.e., the number of incomplete
+%         annotation.
 %
 % [double]
 % recall: An n-by-1 observations of recall on DELTA.
@@ -98,4 +99,4 @@ return
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Wed 13 Jul 2016 01:47:38 PM E
+% Last modified: Thu 14 Jul 2016 04:56:13 PM E
