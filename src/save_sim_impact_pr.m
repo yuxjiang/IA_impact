@@ -62,11 +62,11 @@ fprintf('done.\n');
 % }}}
 
 % clearing {{{
-clear resol N g d ofile
+clear resol loc_ia N g d k ofile
 % }}}
 
 % -------------
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Fri 15 Jul 2016 05:32:36 PM E
+% Last modified: Fri 15 Jul 2016 06:01:59 PM E
