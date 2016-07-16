@@ -1,4 +1,4 @@
-#!/home/yuxjiang/local/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 # GNUPLOT script for Precision-Recall curves
 #
@@ -47,8 +47,8 @@
 
 # input/output {{{
 # Note: try to use absolute path!
-in_dir  = '/home/yuxjiang/Projects/ia_git/result/curves/'
-out_dir = '/home/yuxjiang/Projects/ia_git/figure/fig6/'
+in_dir  = '../../result/curves/'
+out_dir = './'
 # }}}
 
 # setting up {{{
@@ -239,4 +239,4 @@ plot \
 # Yuxiang Jiang
 # School of Informatics and Computing
 # Indiana Univesity Bloomington
-# Last modified: Fri 15 Jul 2016 05:16:25 PM E
+# Last modified: Sat 16 Jul 2016 03:55:29 PM E

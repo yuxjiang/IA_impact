@@ -1,4 +1,4 @@
-#!/home/yuxjiang/local/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 # GNUPLOT script for plotting simulation of differences in F1-measure
 #
@@ -21,15 +21,14 @@
 # to 'out_dir'/sim_df.tex
 
 # input/output {{{
-# Note: try to use absolute path!
-in_dir  = '/home/yuxjiang/Projects/ia_git/result/sim/'
-out_dir = '/home/yuxjiang/Projects/ia_git/figure/fig3/'
+in_dir  = '../../result/sim/'
+out_dir = './'
 # }}}
 
 # setting up {{{
 width = 6
 set term epslatex standalone size width,0.6*width color solid "cmr,12"
-set output out_dir . 'sim_df.tex'
+set output out_dir.'sim_df.tex'
 
 set xtics nomirror
 set ytics nomirror
@@ -68,7 +67,7 @@ set label 3 center 'Cellular component' at screen 0.80,0.88
 set label 4 left '\textsf{A: Absolute changes of $F_1$}' at screen 0.0,0.98
 set label 5 left '\textsf{B: Relative changes of $F_1$}' at screen 0.0,0.48
 
-set size 0.35,0.4
+set size 0.32,0.4
 
 set cbrange [-0.2:0.2]
 set cbtics 0.1
@@ -116,4 +115,4 @@ splot in_dir . 'rel_df_cco.dat' u 1:2:3  w lines notitle
 # Yuxiang Jiang (yuxjiang@indiana.edu)
 # Department of Computer Science
 # Indiana University, Bloomington
-# Last modified: Fri 15 Jul 2016 05:30:26 PM E
+# Last modified: Sat 16 Jul 2016 03:53:02 PM E

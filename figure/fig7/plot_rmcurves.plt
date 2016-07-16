@@ -1,4 +1,4 @@
-#!/home/yuxjiang/local/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 # GNUPLOT script for RU-MI curves
 #
@@ -46,8 +46,8 @@
 # 'out_dir'/rmcurves.tex
 
 # input/output {{{
-in_dir  = '/u/yuxjiang/Projects/ia_git/result/curves/'
-out_dir = '/u/yuxjiang/Projects/ia_git/figure/fig7/'
+in_dir  = '../../result/curves/'
+out_dir = './'
 # }}}
 
 # setting up {{{
@@ -240,4 +240,4 @@ plot \
 # Yuxiang Jiang (yuxjiang@indiana.edu)
 # Department of Computer Science
 # Indiana University, Bloomington
-# Last modified: Fri 15 Jul 2016 05:14:55 PM E
+# Last modified: Sat 16 Jul 2016 03:56:19 PM E

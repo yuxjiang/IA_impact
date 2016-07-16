@@ -1,4 +1,4 @@
-#!/home/yuxjiang/local/bin/gnuplot -persist
+#!/usr/bin/gnuplot -persist
 #
 # GNUPLOT script for plotting simulation of differences in S2-distance
 #
@@ -22,8 +22,8 @@
 
 # input/output {{{
 # Note: try to use absolute path!
-in_dir  = '/home/yuxjiang/Projects/ia_git/result/sim/'
-out_dir = '/home/yuxjiang/Projects/ia_git/figure/fig4/'
+in_dir  = '../../result/sim/'
+out_dir = './'
 # }}}
 
 # setting up {{{
@@ -68,7 +68,7 @@ set label 3 center 'Cellular component' at screen 0.80,0.88
 set label 4 left '\textsf{A: Absolute changes of $S_2$}' at screen 0.0,0.98
 set label 5 left '\textsf{B: Relative changes of $S_2$}' at screen 0.0,0.48
 
-set size 0.35,0.4
+set size 0.32,0.4
 
 set cbrange [-8:8]
 set cbtics 4
@@ -116,4 +116,4 @@ splot in_dir . 'rel_ds_cco.dat' u 1:2:3  w lines notitle
 # Yuxiang Jiang (yuxjiang@indiana.edu)
 # Department of Computer Science
 # Indiana University, Bloomington
-# Last modified: Fri 15 Jul 2016 05:51:06 PM E
+# Last modified: Sat 16 Jul 2016 03:53:53 PM E
