@@ -6,4 +6,4 @@ sim_ds.pdf: plot_sim_ds_2x3.plt
 .PHONY: clean
 
 clean:
-	rm *.eps *.tex *.aux *.log *.dvi
+	rm *.eps *.tex *.aux *.log *.dvi *.pdf

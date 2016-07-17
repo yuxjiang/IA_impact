@@ -7,7 +7,8 @@
 %
 % Note
 % ----
-% Specifiy the output director as 'out_dir' before run this script!
+% [1] Load the required data into workspace by executing 'load_data'
+% [2] Specifiy the output director as 'out_dir' before run this script!
 %
 % Require
 % -------
@@ -37,7 +38,11 @@
 %
 % Provide
 % -------
-% None.
+% data files into 'out_dir'.
+%
+% See Also
+% --------
+%[>]load_data.m
 
 % set output dir {{{
 out_dir = '../result/curves';
@@ -187,4 +192,4 @@ fclose(fid);
 % Yuxiang Jiang (yuxjiang@indiana.edu)
 % Department of Computer Science
 % Indiana University, Bloomington
-% Last modified: Thu 14 Jul 2016 11:38:14 PM E
+% Last modified: Sun 17 Jul 2016 06:28:04 PM E

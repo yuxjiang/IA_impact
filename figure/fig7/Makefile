@@ -6,4 +6,4 @@ rmcurves.pdf: plot_rmcurves.plt
 .PHONY: clean
 
 clean:
-	rm *.eps *.tex *.aux *.log *.dvi
+	rm *.eps *.tex *.aux *.log *.dvi *.pdf

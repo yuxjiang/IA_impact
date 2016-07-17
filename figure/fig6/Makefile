@@ -6,4 +6,4 @@ prcurves.pdf: plot_prcurves.plt
 .PHONY: clean
 
 clean:
-	rm *.eps *.tex *.aux *.log *.dvi
+	rm *.eps *.tex *.aux *.log *.dvi *.pdf
